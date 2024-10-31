@@ -19,6 +19,8 @@ Replacement syntax for deprecated and removed features are also indicated.
 [[cypher-deprecations-additions-removals-5.26]]
 == Neo4j 5.26
 
+=== Deprecated features
+
 [cols="2", options="header"]
 |===
 | Feature
@@ -26,7 +28,6 @@ Replacement syntax for deprecated and removed features are also indicated.
 
 a|
 label:functionality[]
-label:deprecated[]
 label:deprecated[]
 [source, cypher, role="noheader"]
 ----
