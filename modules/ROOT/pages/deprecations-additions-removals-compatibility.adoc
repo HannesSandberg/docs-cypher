@@ -19,6 +19,27 @@ Replacement syntax for deprecated and removed features are also indicated.
 [[cypher-deprecations-additions-removals-5.26]]
 == Neo4j 5.26
 
+[cols="2", options="header"]
+|===
+| Feature
+| Details
+
+a|
+label:functionality[]
+label:deprecated[]
+label:deprecated[]
+[source, cypher, role="noheader"]
+----
+CALL db.schema.nodeTypeProperties() YIELD propertyTypes RETURN propertyTypes;
+CALL db.schema.relTypeProperties() YIELD propertyTypes RETURN propertyTypes;
+----
+a|
+The column `propertyTypes` currently returned by the procedures link:{neo4j-docs-base-uri}/operations-manual/{page-version}/procedures/#procedure_db_schema_nodetypeproperties[`db.schema.nodeTypeProperties()`] and link:{neo4j-docs-base-uri}/operations-manual/{page-version}/procedures/#procedure_db_schema_reltypeproperties[`db.schema.relTypeProperties()`] produces a list of strings representing the potential Java types for a given property.
+In an upcoming major release of Neo4j, this will be updated to represent the possible Cypher types for that property instead.
+For all available Cypher types, see the section on xref::values-and-types/property-structural-constructed.adoc#types-synonyms[types and their synonyms].
+|===
+
+
 === Updated features
 
 [cols="2", options="header"]
@@ -33,9 +54,9 @@ label:updated[]
 ----
 GRANT READ {*} ON GRAPH * FOR (n) WHERE n.createdAt > date('2024-10-25') TO regularUsers
 ----
-| link:{neo4j-docs-base-uri}/operations-manual/{page-version}/authentication-authorization/property-based-access-control/[Property-based access control] does now support temporal and point values.
-|===
+| link:{neo4j-docs-base-uri}/operations-manual/{page-version}/authentication-authorization/property-based-access-control/[Property-based access control] now supports xref:values-and-types/spatial.adoc[spatial] and xref:values-and-types/temporal.adoc[temporal] values.
 
+|===
 
 
 [[cypher-deprecations-additions-removals-5.25]]
@@ -58,6 +79,27 @@ CREATE DATABASE db OPTIONS { existingDataSeedInstance: ... }
 | The `CREATE DATABASE` option `existingDataSeedInstance` has been deprecated and replaced with the option link:{neo4j-docs-base-uri}/operations-manual/{page-version}/database-administration/standard-databases/create-database/#manage-databases-create-database-options[`existingDataSeedServer`]. The functionality is unchanged.
 |===
 
+=== Updated features
+
+[cols="2", options="header"]
+|===
+| Feature
+| Details
+
+a|
+label:functionality[]
+label:updated[]
+[source, cypher, role="noheader"]
+----
+CREATE (n:Label {property: 'name'}), 
+()-[r:REL_TYPE]->()
+----
+| Neo4j's link:{neo4j-docs-base-uri}/operations-manual/{page-version}/database-internals/store-formats/#store-format-overview[block format] now implements xref:appendix/gql-conformance/index.adoc[GQL's] limit on the maximum length of identifiers.
+
+The maximum limit is set to 16,383 characters in an identifier.
+This means that node labels, relationship types, and property keys cannot include more than 16,383 characters.
+|===
+
 === New features
 
 [cols="2", options="header"]
@@ -74,8 +116,6 @@ CREATE DATABASE db OPTIONS { existingDataSeedServer: ... }
 ----
 | The option link:{neo4j-docs-base-uri}/operations-manual/{page-version}/database-administration/standard-databases/create-database/#manage-databases-create-database-options[`existingDataSeedServer`] has been added to `CREATE DATABASE`. The functionality is the same as the deprecated option `existingDataSeedServer`, which this replaces.
 |===
-
-
 
 [[cypher-deprecations-additions-removals-5.24]]
 == Neo4j 5.24
