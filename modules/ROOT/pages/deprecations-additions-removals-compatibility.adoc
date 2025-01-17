@@ -173,6 +173,18 @@ Graph name parts with special characters may require additional escaping of thos
 
 Note that escaping graph names within the graph functions string argument is not supported in Cypher 5.
 
+
+a|
+label:functionality[]
+label:updated[]
+[source, cypher, role="noheader"]
+----
+REVOKE READ {*} ON GRAPH * NODES A FROM regularUser
+REVOKE ROLE regularUser FROM bob
+----
+a|
+Notifications for impossible `REVOKE` commands, where a user, a role, or a database does not exist, have been replaced with errors.
+
 |===
 
 === New features
