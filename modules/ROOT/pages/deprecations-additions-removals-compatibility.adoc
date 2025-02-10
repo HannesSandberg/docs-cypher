@@ -88,8 +88,8 @@ label:functionality[]
 label:removed[]
 [source, cypher, role="noheader"]
 ----
-REVOKE READ {*} ON GRAPH * NODES A FROM regularUser
-REVOKE ROLE regularUser FROM bob
+REVOKE READ {*} ON GRAPH * NODES A FROM missingUser
+REVOKE ROLE missingRole FROM bob
 ----
 a|
 Notifications for impossible `REVOKE` commands, where a user, a role, or a database does not exist, have been replaced with errors.
