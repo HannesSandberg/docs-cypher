@@ -92,7 +92,7 @@ REVOKE READ {*} ON GRAPH * NODES A FROM missingUser
 REVOKE ROLE missingRole FROM bob
 ----
 a|
-Notifications for impossible `REVOKE` commands, where a user, a role, or a database does not exist, have been replaced with errors.
+Errors have replaced notifications for impossible link:{neo4j-docs-base-uri}/operations-manual/current/authentication-authorization/manage-roles/#access-control-revoke-roles[`REVOKE`] commands where a user, role, or database does not exist.
 
 |===
 
